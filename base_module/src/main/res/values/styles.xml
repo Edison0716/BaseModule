@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="common_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/common_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/common_colorPrimaryDark</item>
+        <item name="colorAccent">@color/common_colorAccent</item>
+    </style>
+
+
+    <style name="common_AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/common_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/common_colorPrimary</item>
+        <item name="colorAccent">@color/common_colorPrimary</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@style/common_AnimationActivity</item>
+    </style>
+
+
+
+    <!--Activity turn anim-->
+    <style name="common_AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/common_slide_in_left</item>
+        <item name="android:activityOpenExitAnimation">@anim/common_slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/common_slide_in_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/common_slide_out_right</item>
+    </style>
+</resources>
