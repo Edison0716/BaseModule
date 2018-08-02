@@ -11,7 +11,7 @@ import okhttp3.Response
  *@date: Created in 2018/8/2 下午4:45
  *@modified by:
  */
-class CacheInterceptor() : Interceptor {
+class CacheInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain?): Response {
         var request = chain!!.request()
         if (NetworkUtils.isAvailableByPing()) {
