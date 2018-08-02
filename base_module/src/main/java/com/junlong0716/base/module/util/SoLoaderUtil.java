@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 
 /**
  * @author: EdsionLi
- * @description:
+ * @description: 动态 .so文件 加载器
  * @date: Created in 2018/7/27 上午11:15
  * @modified by:
  */

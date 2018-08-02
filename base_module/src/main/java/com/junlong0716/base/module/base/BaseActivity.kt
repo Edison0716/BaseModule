@@ -7,7 +7,6 @@ import android.support.annotation.LayoutRes
 import com.junlong0716.base.module.manager.ActivityManager
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
-
 /**
  *@author: 巴黎没有摩天轮Li
  *@description: Activity 基类
