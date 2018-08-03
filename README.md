@@ -8,7 +8,6 @@
 3、baseActivity baseFragment basePresenter IPresenter IView </br>
 4、SoLoaderUtil </br>
 5、Retrofit 网络请求框架封装（已完成 50%）</br>
-Retrofit 网络请求框架封装（已完成 70%）</br>
 ---Log显示   </br>
 ---GET/POST请求</br>
 ---文件下载回调监听</br>
