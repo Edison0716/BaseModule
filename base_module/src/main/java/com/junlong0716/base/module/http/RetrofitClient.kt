@@ -1,9 +1,15 @@
 package com.junlong0716.base.module.http
 
 import android.content.Context
+import com.junlong0716.base.module.http.download.DownloadService
+import com.junlong0716.base.module.http.download.DownloadTransformer
 import com.junlong0716.base.module.http.interceptor.CacheInterceptor
+import com.junlong0716.base.module.util.FileUtils
 import com.junlong0716.base.module.util.FormatJsonUtil
 import com.junlong0716.base.module.util.LoggerUtil
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,6 +46,8 @@ class RetrofitClient private constructor() {
     private var mBaseUrl = ""
     private var mRetrofit: Retrofit? = null
     private var mOkHttpClient: OkHttpClient? = null
+    private var mSavePath: String? = null
+    private var mFileName: String? = null
 
     //设置请求头
     fun setBaseUrl(baseUrl: String): RetrofitClient {
@@ -75,7 +83,6 @@ class RetrofitClient private constructor() {
         return mRetrofit!!
     }
 
-
     private inner class HttpLoggerInterceptor : HttpLoggingInterceptor.Logger {
         private val mMessage = StringBuilder()
         override fun log(message: String) {
@@ -94,5 +101,30 @@ class RetrofitClient private constructor() {
                 LoggerUtil.d(mMessage.toString())
             }
         }
+    }
+
+    //下载文件
+    fun downloadFile(url: String): Flowable<Any> {
+        return downloadFile(url, null, null)
+    }
+
+    //下载文件 指定保存路径
+    fun downloadFile(url: String, savePath: String?, fileName: String?): Flowable<Any> {
+        mSavePath = savePath
+        mFileName = fileName
+        if (mSavePath == null || mSavePath!!.trim() == "") mSavePath = FileUtils.getDefaultDownLoadPath()
+        if (mFileName == null || mFileName!!.trim() == "") mFileName = FileUtils.getDefaultDownLoadFileName(url)
+
+        //download listener
+        val downLoadTransformer = DownloadTransformer(mSavePath!!, mFileName!!)
+        return Flowable
+                .just(url)
+                .flatMap {
+                    val downloadService = getClient().create(DownloadService::class.java)
+                    return@flatMap downloadService.startDownload(it)
+                }
+                .compose(downLoadTransformer)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 }

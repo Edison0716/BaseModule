@@ -22,7 +22,7 @@ abstract class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Utils.init(this)
-        LoggerUtil.init(true)
+        LoggerUtil.init()
     }
 
     //初始化Logger 防止混乱
