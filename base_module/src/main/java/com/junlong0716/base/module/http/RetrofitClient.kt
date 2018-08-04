@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  *@author: EdsionLi
- *@description:
+ *@description: Retrofit 核心类
  *@date: Created in 2018/8/2 下午3:46
  *@modified by:
  */
