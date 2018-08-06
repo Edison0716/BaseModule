@@ -4,7 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <Button
+        android:id="@+id/bt_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下载" />
+
+    <Button
+        android:id="@+id/bt_send_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxBus发射一条消息"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt_send_sticky_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RxBus发射一条粘性消息"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bt_go"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到StickyMessageActivity"
+        android:textAllCaps="false" />
 
 </LinearLayout>

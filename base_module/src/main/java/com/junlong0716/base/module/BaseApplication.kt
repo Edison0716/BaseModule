@@ -24,24 +24,4 @@ abstract class BaseApplication : Application() {
         Utils.init(this)
         LoggerUtil.init()
     }
-
-    //初始化Logger 防止混乱
-    private fun initLogger() {
-        val logStrategy = object : LogStrategy {
-            private val prefix = arrayOf(". ", " .")
-            private var index = 0
-
-            override fun log(priority: Int, @Nullable tag: String?, @NonNull message: String) {
-                index = index xor 1
-                Log.println(priority, prefix[index] + tag!!, message)
-            }
-        }
-        val formatStrategy = PrettyFormatStrategy.newBuilder()
-                .logStrategy(logStrategy)
-                .showThreadInfo(false)
-                .methodCount(1)
-                .methodOffset(7)
-                .build()
-        Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
-    }
 }

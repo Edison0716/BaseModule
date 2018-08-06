@@ -1,16 +1,20 @@
 package com.junlong0716.basemodule
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import com.blankj.utilcode.util.ToastUtils
 import com.junlong0716.base.module.base.BaseActivity
-import com.junlong0716.base.module.http.DefaultObserver
 import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
+import com.junlong0716.base.module.rx.bus.RxBus
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
 class MainActivity : BaseActivity<MainPresenter>(), MainView {
     override fun beforeSetLayout() {
@@ -26,8 +30,15 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
     override fun initView(savedInstanceState: Bundle?) {
         val rxPermissions = RxPermissions(this)
+
+        RxBus.default.subscribe(this, object : RxBus.Callback<String> {
+            override fun onEvent(t: String) {
+                ToastUtils.showShort(t)
+            }
+        })
+
         rxPermissions
-                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe {
 
                 }
@@ -39,21 +50,39 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
                     ToastUtils.showShort(it.string())
                 }
 
+        bt_download.setOnClickListener {
+            RetrofitClient.instance.downloadFile("http://ucan.25pp.com/Wandoujia_web_seo_baidu_homepage.apk", Environment.getExternalStorageDirectory().absolutePath + File.separator, "豌豆荚.apk")
+                    .safeSubscribe(object : DownloadSubscriber(this) {
+                        override fun onNext(result: String) {
+                            ToastUtils.showShort("正在下载！")
+                        }
 
-        RetrofitClient.instance.downloadFile("http://ucan.25pp.com/Wandoujia_web_seo_baidu_homepage.apk")
-                .safeSubscribe(object :DownloadSubscriber(this){
-                    override fun onNext(result: String) {
-                        ToastUtils.showShort("正在下载！")
-                    }
+                        override fun onProgress(percent: Int?) {
+                            Logger.d(percent!!.toString())
+                        }
 
-                    override fun onProgress(percent: Int?) {
-                        Logger.d(percent!!.toString())
-                    }
+                        override fun onError(errorCode: Int, msg: String?) {
+                            Logger.d(msg)
+                        }
+                    })
+        }
+        bt_send_message.setOnClickListener {
+            RxBus.default.post("RxBus 发送了一条消息")
+        }
 
-                    override fun onError(errorCode: Int, msg: String?) {
-                        Logger.d(msg)
-                    }
+        bt_send_sticky_message.setOnClickListener {
+            // 发送 String 类型的粘性事件
+            RxBus.default.postSticky("RxBus 发送了一条粘性消息");
+            startActivity(Intent(this, StickyMessageActivity::class.java))
+        }
 
-                })
+        bt_go.setOnClickListener {
+            startActivity(Intent(this, StickyMessageActivity::class.java))
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RxBus.default.unregister(this)
     }
 }

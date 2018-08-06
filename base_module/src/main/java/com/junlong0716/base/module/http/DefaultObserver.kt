@@ -22,20 +22,14 @@ import java.text.ParseException
  * @modified by:
  */
 abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
-    override fun onSubscribe(d: Disposable) {
+    override fun onSubscribe(d: Disposable) {}
 
-    }
-
-    /**
-     * invalid_sign 服务器返回的数据 登录过期
-     */
     override fun onNext(t: T) {
         if (t.code == 0) {
             onSuccess(t)
         } else {
-            if (t.desc == "invalid_sign") {
+            if (t.code == RetrofitClient.instance.getLogOutCode()) {
                 ToastUtils.showShort("登录过期！请重新登录！")
-                //todo 登录过期操作
             }
             onFail(t)
         }

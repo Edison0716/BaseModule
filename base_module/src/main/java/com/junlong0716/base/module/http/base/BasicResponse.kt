@@ -7,7 +7,6 @@ package com.junlong0716.base.module.http.base
  * @modified by:
  */
 class BasicResponse<T> {
-
     var code: Int = 0
     var desc: String? = null
     var data: T? = null

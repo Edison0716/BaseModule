@@ -48,6 +48,7 @@ class RetrofitClient private constructor() {
     private var mOkHttpClient: OkHttpClient? = null
     private var mSavePath: String? = null
     private var mFileName: String? = null
+    private var mLogOutCode: Int? = null
 
     //设置请求头
     fun setBaseUrl(baseUrl: String): RetrofitClient {
@@ -55,10 +56,20 @@ class RetrofitClient private constructor() {
         return this
     }
 
+    //账号失效 code
+    fun setLogOutCode(code: Int): RetrofitClient {
+        this.mLogOutCode = code
+        return this
+    }
+
+    fun getLogOutCode(): Int? {
+        return mLogOutCode
+    }
+
     //初始化
     fun initClient(mContext: Context) {
         if (mBaseUrl == "") throw IllegalArgumentException("请在Application中初始化请求头！")
-
+        if (mLogOutCode == null) throw IllegalArgumentException("请在Application中初始化登录过期code！")
         val logInterceptor = HttpLoggingInterceptor(HttpLoggerInterceptor())
         logInterceptor.level = HttpLoggingInterceptor.Level.BODY
 

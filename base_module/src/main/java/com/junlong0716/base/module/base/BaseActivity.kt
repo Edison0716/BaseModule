@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import com.junlong0716.base.module.manager.ActivityManager
+import com.junlong0716.base.module.rx.bus.RxBus
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 /**
