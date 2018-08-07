@@ -51,7 +51,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
                 }
 
         bt_download.setOnClickListener {
-            RetrofitClient.instance.downloadFile("http://ucan.25pp.com/Wandoujia_web_seo_baidu_homepage.apk", Environment.getExternalStorageDirectory().absolutePath + File.separator, "豌豆荚.apk")
+            RetrofitClient.instance.downloadFile("http://ws.yingyonghui.com/cd289bdaeecd4068f05ce094139088ac/5b6937ba/apk/5914137/131181323dba71fcf4786905afae740a", Environment.getExternalStorageDirectory().absolutePath + File.separator, "豌豆荚.apk")
                     .safeSubscribe(object : DownloadSubscriber(this) {
                         override fun onNext(result: String) {
                             ToastUtils.showShort("正在下载！")

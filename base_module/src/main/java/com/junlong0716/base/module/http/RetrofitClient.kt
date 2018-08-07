@@ -131,7 +131,8 @@ class RetrofitClient private constructor() {
         return Flowable
                 .just(url)
                 .flatMap {
-                    val downloadService = getClient().create(DownloadService::class.java)
+                    //重新创建了一个OkHttp客户端 若不创建则收不到下载回调
+                    val downloadService = getClient().newBuilder().client(OkHttpClient.Builder().build()).build().create(DownloadService::class.java)
                     return@flatMap downloadService.startDownload(it)
                 }
                 .compose(downLoadTransformer)
