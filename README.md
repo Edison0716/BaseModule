@@ -11,4 +11,5 @@
 ---Log显示   </br>
 ---GET/POST请求</br>
 ---文件下载回调监听</br>
-6、RxSchedulers 线程调度
+6、RxSchedulers 线程调度</br>
+7、RxBus(基于Blankj 的RxBus 修改)
