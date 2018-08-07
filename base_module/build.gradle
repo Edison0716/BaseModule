@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
-    publishNonDefault true
+
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 27

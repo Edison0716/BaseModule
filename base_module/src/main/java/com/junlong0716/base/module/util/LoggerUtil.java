@@ -1,5 +1,6 @@
 package com.junlong0716.base.module.util;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -22,8 +23,8 @@ public class LoggerUtil {
     /**
      * 初始化log工具，在app入口处调用
      */
-    public static void init() {
-        initLogger();
+    public static void init(boolean isLoggable) {
+        initLogger(isLoggable);
     }
 
     public static void d(String message) {
@@ -47,7 +48,7 @@ public class LoggerUtil {
         Logger.json(json);
     }
 
-    private static void initLogger() {
+    private static void initLogger(final boolean isLoggable) {
         //防止Logger混乱
         LogStrategy logStrategy = new LogStrategy() {
             private String[] prefix = {". ", " ."};
@@ -70,7 +71,7 @@ public class LoggerUtil {
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, @Nullable String tag) {
-                return BuildConfig.DEBUG;
+                return isLoggable;
             }
         });
     }

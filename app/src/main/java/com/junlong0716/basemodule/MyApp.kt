@@ -13,7 +13,7 @@ import com.junlong0716.base.module.util.LoggerUtil
 class MyApp : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
-        LoggerUtil.init()
+        LoggerUtil.init(BuildConfig.DEBUG)
         RetrofitClient.instance.setBaseUrl("http://dev.233player.com/").setLogOutCode(-4000).initClient(this)
     }
 }
