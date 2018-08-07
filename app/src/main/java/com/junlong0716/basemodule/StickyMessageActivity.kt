@@ -19,11 +19,11 @@ class StickyMessageActivity : AppCompatActivity() {
             }
         })
 
-        RxBus.default.subscribeSticky(this,"SEND_MESSAGE_BY_TAG",object :RxBus.Callback<String>{
+        RxBus.default.subscribeSticky(this, "SEND_MESSAGE_BY_TAG", object : RxBus.Callback<String> {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
                 //消费事件
-                CacheUtils.getInstance().removeStickyEvent(t,"SEND_MESSAGE_BY_TAG")
+                CacheUtils.getInstance().removeStickyEvent(t, "SEND_MESSAGE_BY_TAG")
             }
         })
     }

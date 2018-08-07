@@ -40,7 +40,6 @@ dependencies {
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     api 'com.blankj:utilcode:1.18.0'
-    api 'com.orhanobut:logger:2.2.0'
 }
 
 repositories {
