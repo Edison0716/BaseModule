@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author: EdsionLi
- * @description:
+ * @description: 粘性事件 缓存工具类 从缓存中查找保存的粘性事件
  * @date: Created in 2018/8/6 下午4:06
  * @modified by:
  */
@@ -22,14 +22,14 @@ public final class CacheUtils {
 
     private final Map<Object, List<Disposable>> disposablesMap = new ConcurrentHashMap<>();
 
-    private CacheUtils() {
+    private CacheUtils() { }
 
-    }
-
+    //单例
     public static CacheUtils getInstance() {
         return Holder.CACHE_UTILS;
     }
 
+    //添加粘性事件
     public void addStickyEvent(final TagMessage stickyEvent) {
         Class<?> eventType = stickyEvent.getEvent().getClass();
         synchronized (stickyEventsMap) {
@@ -49,6 +49,7 @@ public final class CacheUtils {
         }
     }
 
+    //从缓存中查找粘性事件
     public TagMessage findStickyEvent(final Class eventType, final String tag) {
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
@@ -66,6 +67,7 @@ public final class CacheUtils {
         }
     }
 
+    //添加订阅
     public void addDisposable(Object subscriber, Disposable disposable) {
         synchronized(disposablesMap) {
             List<Disposable> list = disposablesMap.get(subscriber);
@@ -79,6 +81,7 @@ public final class CacheUtils {
         }
     }
 
+    //移除订阅
     public void removeDisposables(final Object subscriber) {
         synchronized(disposablesMap) {
             List<Disposable> disposables = disposablesMap.get(subscriber);
@@ -93,19 +96,23 @@ public final class CacheUtils {
         }
     }
 
+    //消费事件
     public void removeStickyEvent(final TagMessage stickyEvent){
         Class<?> eventType = stickyEvent.getEvent().getClass();
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
             int indexOf = stickyEvents.indexOf(stickyEvent);
-            if (indexOf == -1) {// 不存在直接插入
+            if (indexOf == -1) {
+                // 事件不存在
                 Log.e("no sticky event","粘性事件不存在！");
-            } else {// 存在则覆盖
+            } else {
+                // 存在则移除事件
                 stickyEvents.remove(indexOf);
             }
         }
     }
 
+    //单例Holder
     private static class Holder {
         private static final CacheUtils CACHE_UTILS = new CacheUtils();
     }

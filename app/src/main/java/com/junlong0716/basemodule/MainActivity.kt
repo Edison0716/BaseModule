@@ -79,6 +79,12 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
         bt_go.setOnClickListener {
             startActivity(Intent(this, StickyMessageActivity::class.java))
         }
+
+        bt_send_sticky_message_by_tag.setOnClickListener {
+            //发送 带有 Tag 标签的消息
+            RxBus.default.postSticky("RxBus 发送了一条带标签粘性消息", "SEND_MESSAGE_BY_TAG")
+            startActivity(Intent(this, StickyMessageActivity::class.java))
+        }
     }
 
     override fun onDestroy() {

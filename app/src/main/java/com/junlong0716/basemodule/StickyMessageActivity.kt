@@ -8,16 +8,23 @@ import com.junlong0716.base.module.rx.bus.TagMessage
 import com.junlong0716.base.module.util.CacheUtils
 
 class StickyMessageActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sticky_message)
         RxBus.default.subscribeSticky(this, object : RxBus.Callback<String> {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
-
                 //消费事件
                 val msgEvent = TagMessage(t, "")
+                CacheUtils.getInstance().removeStickyEvent(msgEvent)
+            }
+        })
+
+        RxBus.default.subscribeSticky(this,"SEND_MESSAGE_BY_TAG",object :RxBus.Callback<String>{
+            override fun onEvent(t: String) {
+                ToastUtils.showShort(t)
+                //消费事件
+                val msgEvent = TagMessage(t, "SEND_MESSAGE_BY_TAG")
                 CacheUtils.getInstance().removeStickyEvent(msgEvent)
             }
         })

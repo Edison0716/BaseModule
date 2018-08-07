@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/bt_download"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="下载" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bt_send_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RxBus发射一条消息"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/bt_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="下载" />
 
-    <Button
-        android:id="@+id/bt_send_sticky_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RxBus发射一条粘性消息"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/bt_send_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus发射一条消息"
+            android:textSize="12sp"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/bt_go"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="跳转到StickyMessageActivity"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/bt_send_sticky_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus发射一条粘性消息"
+            android:textSize="12sp"
+            android:textAllCaps="false" />
 
-</LinearLayout>
+
+        <Button
+            android:id="@+id/bt_send_sticky_message_by_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RxBus发射一条含有标签的粘性消息"
+            android:textSize="12sp"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/bt_go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="跳转到StickyMessageActivity"
+            android:textAllCaps="false" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
