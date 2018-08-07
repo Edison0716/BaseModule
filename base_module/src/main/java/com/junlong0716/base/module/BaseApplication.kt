@@ -11,7 +11,6 @@ import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.orhanobut.logger.LogStrategy
 
-
 /**
  *@author: EdsionLi
  *@description:
@@ -22,6 +21,6 @@ abstract class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Utils.init(this)
-        LoggerUtil.init()
+        //LoggerUtil.init()
     }
 }
