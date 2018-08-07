@@ -15,8 +15,7 @@ class StickyMessageActivity : AppCompatActivity() {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
                 //消费事件
-                val msgEvent = TagMessage(t, "")
-                CacheUtils.getInstance().removeStickyEvent(msgEvent)
+                CacheUtils.getInstance().removeStickyEvent(t)
             }
         })
 
@@ -24,8 +23,7 @@ class StickyMessageActivity : AppCompatActivity() {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
                 //消费事件
-                val msgEvent = TagMessage(t, "SEND_MESSAGE_BY_TAG")
-                CacheUtils.getInstance().removeStickyEvent(msgEvent)
+                CacheUtils.getInstance().removeStickyEvent(t,"SEND_MESSAGE_BY_TAG")
             }
         })
     }

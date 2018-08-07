@@ -22,7 +22,8 @@ public final class CacheUtils {
 
     private final Map<Object, List<Disposable>> disposablesMap = new ConcurrentHashMap<>();
 
-    private CacheUtils() { }
+    private CacheUtils() {
+    }
 
     //单例
     public static CacheUtils getInstance() {
@@ -69,7 +70,7 @@ public final class CacheUtils {
 
     //添加订阅
     public void addDisposable(Object subscriber, Disposable disposable) {
-        synchronized(disposablesMap) {
+        synchronized (disposablesMap) {
             List<Disposable> list = disposablesMap.get(subscriber);
             if (list == null) {
                 list = new ArrayList<>();
@@ -83,7 +84,7 @@ public final class CacheUtils {
 
     //移除订阅
     public void removeDisposables(final Object subscriber) {
-        synchronized(disposablesMap) {
+        synchronized (disposablesMap) {
             List<Disposable> disposables = disposablesMap.get(subscriber);
             if (disposables == null) return;
             for (Disposable disposable : disposables) {
@@ -97,14 +98,48 @@ public final class CacheUtils {
     }
 
     //消费事件
-    public void removeStickyEvent(final TagMessage stickyEvent){
+    public void removeStickyEvent(final TagMessage stickyEvent) {
         Class<?> eventType = stickyEvent.getEvent().getClass();
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
             int indexOf = stickyEvents.indexOf(stickyEvent);
             if (indexOf == -1) {
                 // 事件不存在
-                Log.e("no sticky event","粘性事件不存在！");
+                Log.e("no sticky event", "粘性事件不存在！");
+            } else {
+                // 存在则移除事件
+                stickyEvents.remove(indexOf);
+            }
+        }
+    }
+
+    //消费事件
+    public void removeStickyEvent(final String event) {
+        TagMessage tagMessage = new TagMessage(event, "");
+        Class<?> eventType = tagMessage.getEvent().getClass();
+        synchronized (stickyEventsMap) {
+            List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
+            int indexOf = stickyEvents.indexOf(tagMessage);
+            if (indexOf == -1) {
+                // 事件不存在
+                Log.e("no sticky event", "粘性事件不存在！");
+            } else {
+                // 存在则移除事件
+                stickyEvents.remove(indexOf);
+            }
+        }
+    }
+
+    //消费事件
+    public void removeStickyEvent(final String event, final String tag) {
+        TagMessage tagMessage = new TagMessage(event, tag);
+        Class<?> eventType = tagMessage.getEvent().getClass();
+        synchronized (stickyEventsMap) {
+            List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
+            int indexOf = stickyEvents.indexOf(tagMessage);
+            if (indexOf == -1) {
+                // 事件不存在
+                Log.e("no sticky event", "粘性事件不存在！");
             } else {
                 // 存在则移除事件
                 stickyEvents.remove(indexOf);
