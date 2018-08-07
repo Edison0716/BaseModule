@@ -5,11 +5,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.junlong0716.base.module.BuildConfig;
-import com.junlong0716.base.module.logger.AndroidLogAdapter;
-import com.junlong0716.base.module.logger.FormatStrategy;
-import com.junlong0716.base.module.logger.LogStrategy;
-import com.junlong0716.base.module.logger.Logger;
-import com.junlong0716.base.module.logger.PrettyFormatStrategy;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.LogStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 
 /**

@@ -8,8 +8,8 @@ import com.blankj.utilcode.util.ToastUtils
 import com.junlong0716.base.module.base.BaseActivity
 import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
-import com.junlong0716.base.module.logger.Logger
 import com.junlong0716.base.module.rx.bus.RxBus
+import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
