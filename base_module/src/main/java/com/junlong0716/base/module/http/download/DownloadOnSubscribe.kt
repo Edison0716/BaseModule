@@ -48,7 +48,9 @@ class DownloadOnSubscribe @Throws(IOException::class) constructor(responseBody: 
             mFlowableEmitter!!.onNext(mSavePath + mFileName)
             mFlowableEmitter!!.onComplete()
         } catch (exception: Exception) {
-            mFlowableEmitter!!.onError(exception)
+            if (!mFlowableEmitter!!.isCancelled){
+                mFlowableEmitter!!.onError(exception)
+            }
         }
     }
 

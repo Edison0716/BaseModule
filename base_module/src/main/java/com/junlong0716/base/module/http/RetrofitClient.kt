@@ -136,7 +136,5 @@ class RetrofitClient private constructor() {
                     return@flatMap downloadService.startDownload(it)
                 }
                 .compose(downLoadTransformer)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
     }
 }

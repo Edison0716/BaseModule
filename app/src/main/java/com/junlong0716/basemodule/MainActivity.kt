@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.junlong0716.base.module.base.BaseActivity
 import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
+import com.junlong0716.base.module.rx.RxSchedulers
 import com.junlong0716.base.module.rx.bus.RxBus
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -52,6 +53,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
         bt_download.setOnClickListener {
             RetrofitClient.instance.downloadFile("http://ws.yingyonghui.com/cd289bdaeecd4068f05ce094139088ac/5b6937ba/apk/5914137/131181323dba71fcf4786905afae740a", Environment.getExternalStorageDirectory().absolutePath + File.separator, "豌豆荚.apk")
+                    .compose(RxSchedulers.io_main_flowable(this))
                     .safeSubscribe(object : DownloadSubscriber(this) {
                         override fun onNext(result: String) {
                             ToastUtils.showShort("正在下载！")
