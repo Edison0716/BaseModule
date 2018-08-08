@@ -16,3 +16,5 @@
 ---修复下载无法关闭导致内存泄露问题</br>
 6、RxSchedulers 线程调度</br>
 7、RxBus(基于Blankj 的RxBus 修改)</br>
+8、颜色值</br>
+9、Glide 封装 加载进度回调</br>
