@@ -7,7 +7,7 @@ import okhttp3.Response
 
 /**
  *@author: EdsionLi
- *@description:
+ *@description: okhttp 缓存设置
  *@date: Created in 2018/8/2 下午4:45
  *@modified by:
  */

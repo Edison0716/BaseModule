@@ -1,6 +1,7 @@
 package com.junlong0716.base.module.http
 
 import android.content.Context
+import com.junlong0716.base.module.Constant
 import com.junlong0716.base.module.http.download.DownloadService
 import com.junlong0716.base.module.http.download.DownloadTransformer
 import com.junlong0716.base.module.http.interceptor.CacheInterceptor
@@ -79,7 +80,8 @@ class RetrofitClient private constructor() {
                 .addInterceptor(CacheInterceptor())
                 .addNetworkInterceptor(CacheInterceptor())
                 .addNetworkInterceptor(logInterceptor)
-                .connectTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
 
         mRetrofit = Retrofit.Builder()
