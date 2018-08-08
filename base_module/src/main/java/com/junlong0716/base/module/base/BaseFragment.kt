@@ -1,7 +1,9 @@
 package com.junlong0716.base.module.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,5 +77,16 @@ abstract class BaseFragment<P : IPresenter> : RxFragment() {
         hasFetchData = false
         mPresenter = null
         mRootView = null
+    }
+
+    protected fun go(tarActivity: Class<out AppCompatActivity>) {
+        val intent = Intent(activity, tarActivity)
+        startActivity(intent)
+    }
+
+    protected fun go(tarActivity: Class<out AppCompatActivity>, bundle: Bundle) {
+        val intent = Intent(activity, tarActivity)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

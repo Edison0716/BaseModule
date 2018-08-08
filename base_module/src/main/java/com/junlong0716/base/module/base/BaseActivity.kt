@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
+import android.support.v7.app.AppCompatActivity
 import com.junlong0716.base.module.manager.ActivityManager
 import com.junlong0716.base.module.rx.bus.RxBus
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -51,12 +52,12 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
     }
 
 
-    protected fun go(tarActivity: Class<out Activity>) {
+    protected fun go(tarActivity: Class<out AppCompatActivity>) {
         val intent = Intent(this, tarActivity)
         startActivity(intent)
     }
 
-    protected fun go(tarActivity: Class<out Activity>, bundle: Bundle) {
+    protected fun go(tarActivity: Class<out AppCompatActivity>, bundle: Bundle) {
         val intent = Intent(this, tarActivity)
         intent.putExtras(bundle)
         startActivity(intent)

@@ -9,8 +9,6 @@ import com.junlong0716.base.module.util.FileUtils
 import com.junlong0716.base.module.util.FormatJsonUtil
 import com.junlong0716.base.module.util.LoggerUtil
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
