@@ -12,5 +12,6 @@
 ---GET/POST请求</br>
 ---文件下载回调监听</br>
 ---修复无法接受到下载回调</br>
+---修复Retrofit无法显示打印日志问题</br>
 6、RxSchedulers 线程调度</br>
 7、RxBus(基于Blankj 的RxBus 修改)</br>
