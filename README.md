@@ -2,7 +2,9 @@
 插件化 基类库
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
+```
 implementation 'com.github.Jack1995:BaseModule:1.1.8'
+```
 
 ----------记录过程----------</br>
 1、修改gradle版本 </br>
