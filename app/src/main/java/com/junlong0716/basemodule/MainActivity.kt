@@ -4,12 +4,15 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.content.ContextCompat
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.junlong0716.base.module.base.BaseActivity
 import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
 import com.junlong0716.base.module.rx.RxSchedulers
 import com.junlong0716.base.module.rx.bus.RxBus
+import com.junlong0716.base.module.util.StatusBarUtil
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
