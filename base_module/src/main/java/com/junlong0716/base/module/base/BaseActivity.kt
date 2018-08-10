@@ -1,6 +1,5 @@
 package com.junlong0716.base.module.base
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -32,6 +31,9 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
         //绑定Presenter
         attachPresenter()
 
+        //注册RxBus
+        registerRxBus()
+
         //初始化控件
         initView(savedInstanceState)
     }
@@ -45,11 +47,15 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
 
     abstract fun initView(savedInstanceState: Bundle?)
 
+    abstract fun registerRxBus()
+
     override fun onDestroy() {
         super.onDestroy()
         //解除Presenter 与 Activity 绑定
         this.mPresenter!!.onDestroy()
         this.mPresenter = null
+        //解除注册RxBus
+        RxBus.default.unregister(this)
     }
 
 

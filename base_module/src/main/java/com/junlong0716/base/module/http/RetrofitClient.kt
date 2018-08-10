@@ -94,6 +94,7 @@ class RetrofitClient private constructor() {
         return mRetrofit!!
     }
 
+    //日志拦截器
     private inner class HttpLoggerInterceptor : HttpLoggingInterceptor.Logger {
         private val mMessage = StringBuilder()
         override fun log(message: String) {
