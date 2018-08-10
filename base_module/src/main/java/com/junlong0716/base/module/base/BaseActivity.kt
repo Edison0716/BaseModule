@@ -35,6 +35,7 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
         //初始化控件
         initView(savedInstanceState)
     }
+
     abstract fun beforeSetLayout()
 
     abstract fun attachPresenter()
@@ -59,6 +60,19 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
 
     protected fun go(tarActivity: Class<out AppCompatActivity>, bundle: Bundle) {
         val intent = Intent(this, tarActivity)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    protected fun go(tarActivityPackage: String, tarActivityPackageName: String) {
+        val intent = Intent()
+        intent.setClassName(tarActivityPackage, tarActivityPackageName)
+        startActivity(intent)
+    }
+
+    protected fun go(tarActivityPackage: String, tarActivityPackageName: String, bundle: Bundle) {
+        val intent = Intent()
+        intent.setClassName(tarActivityPackage, tarActivityPackageName)
         intent.putExtras(bundle)
         startActivity(intent)
     }
