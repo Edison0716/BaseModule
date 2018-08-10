@@ -21,22 +21,31 @@ object InstallPlugComponentUtil {
             installPlugInComponentCallback.onComponentNonExist()
             return
         }
+
         //判断插件是否存在
-        if (PluginManager.getInstance(context).getLoadedPlugin(componentPackageName) == null){
-            //加载插件包
-            PluginManager.getInstance(context).loadPlugin(componentFile)
-            installPlugInComponentCallback.onComponentHasLoaded()
-        }else{
-            installPlugInComponentCallback.onComponentHasAlreadyLoad()
+        if (PluginManager.getInstance(context).getLoadedPlugin(componentPackageName) == null) {
+
+            try {
+                //加载插件包
+                PluginManager.getInstance(context).loadPlugin(componentFile)
+            } catch (e: Exception) {
+                //加载插件包 失败
+                installPlugInComponentCallback.onComponentInstallFailed()
+                return
+            }
         }
+
+        installPlugInComponentCallback.onComponentHasLoaded()
     }
 
     interface InstallPlugInComponentCallback {
         //插件包不存在
         fun onComponentNonExist()
-        //插件包已经加载过
-        fun onComponentHasAlreadyLoad()
+
         //插件加载完成
         fun onComponentHasLoaded()
+
+        //加载插件失败
+        fun onComponentInstallFailed()
     }
 }
