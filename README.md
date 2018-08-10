@@ -3,14 +3,14 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.1.8'
+implementation 'com.github.Jack1995:BaseModule:1.1.9.2'
 ```
 
 ----------记录过程----------</br>
 1、修改gradle版本 </br>
 2、rxJava rxAndroid rxPermissions rxLifecycle </br>
 3、baseActivity baseFragment basePresenter IPresenter IView </br>
-4、SoLoaderUtil </br>
+4、SoLoaderUtil 动态加载 .so文件</br>
 5、Retrofit 网络请求框架封装</br>
 ---Log显示   </br>
 ---GET/POST请求</br>
