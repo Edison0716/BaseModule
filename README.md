@@ -11,7 +11,7 @@ implementation 'com.github.Jack1995:BaseModule:1.1.8'
 2、rxJava rxAndroid rxPermissions rxLifecycle </br>
 3、baseActivity baseFragment basePresenter IPresenter IView </br>
 4、SoLoaderUtil </br>
-5、Retrofit 网络请求框架封装（已完成 90%）</br>
+5、Retrofit 网络请求框架封装</br>
 ---Log显示   </br>
 ---GET/POST请求</br>
 ---文件下载回调监听</br>
