@@ -29,4 +29,8 @@ class LogInActivity : BaseActivity<LogInPresenter>(), LogInContract.View {
 
     override fun requestLogInByWechatFailed(reason: String) {
     }
+
+    override fun registerRxBus() {
+
+    }
 }

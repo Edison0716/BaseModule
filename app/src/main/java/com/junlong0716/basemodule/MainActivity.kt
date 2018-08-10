@@ -92,6 +92,10 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
         }
     }
 
+    override fun registerRxBus() {
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         RxBus.default.unregister(this)

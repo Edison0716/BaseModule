@@ -51,6 +51,7 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
     api 'de.hdodenhof:circleimageview:2.2.0'
     api 'com.airbnb.android:lottie:2.5.5'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
 }
 
 repositories {
