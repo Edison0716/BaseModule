@@ -1,6 +1,10 @@
 # BaseModule
 插件化 基类库
-由于使用VirtualApk插件化开发方案 抽离出公共组件
+由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
+
+```
+implementation 'com.github.Jack1995:BaseModule:1.1.8'
+```
 
 ----------记录过程----------</br>
 1、修改gradle版本 </br>
@@ -20,3 +24,4 @@
 9、Glide 封装 加载进度回调</br>
 10、theme style 文件</br>
 11、状态栏工具类</br>
+12、账号相关 （移除在BaseApplication中保存个人信息 不知道什么原因 在其他插件中获取不到个人信息）</br>
