@@ -1,16 +1,17 @@
 package com.junlong0716.base.module.http
 
 import android.content.Context
+import com.blankj.utilcode.util.NetworkUtils
 import com.junlong0716.base.module.Constant
 import com.junlong0716.base.module.http.download.DownloadService
 import com.junlong0716.base.module.http.download.DownloadTransformer
 import com.junlong0716.base.module.http.interceptor.CacheInterceptor
+import com.junlong0716.base.module.manager.UserManager
 import com.junlong0716.base.module.util.FileUtils
 import com.junlong0716.base.module.util.FormatJsonUtil
 import com.junlong0716.base.module.util.LoggerUtil
 import io.reactivex.Flowable
-import okhttp3.Cache
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -88,10 +89,41 @@ class RetrofitClient private constructor() {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+
+        val authOkHttpClient = OkHttpClient
+                .Builder()
+                .cache(Cache(File(mContext.externalCacheDir, "net_request_cache"), (10 * 1024 * 1024).toLong()))
+                .addInterceptor(CacheInterceptor())
+                .addInterceptor(AuthHttpCacheInterceptor())
+                .addNetworkInterceptor(CacheInterceptor())
+                .addNetworkInterceptor(logInterceptor)
+                .connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build()
     }
 
     fun getClient(): Retrofit {
         return mRetrofit!!
+    }
+
+    //认证以后的请求客户端 添加每次都要附带的 pin
+    inner class AuthHttpCacheInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain?): Response {
+            val original = chain!!.request()
+            val originalHttpUrl = original.url()
+            val url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("pin", UserManager.getUserAccount()!!.pin)
+                    .build()
+            val requestBuilder = original.newBuilder()
+                    .method(original.method(), original.body()).url(url)
+            var request = requestBuilder.build()
+            request = if (!NetworkUtils.isConnected()) {
+                request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build()
+            } else {
+                request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build()
+            }
+            return chain.proceed(request)
+        }
     }
 
     //日志拦截器
