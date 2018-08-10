@@ -49,6 +49,8 @@ dependencies {
     api 'com.didi.virtualapk:core:0.9.6'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+    api 'de.hdodenhof:circleimageview:2.2.0'
+    api 'com.airbnb.android:lottie:2.5.5'
 }
 
 repositories {
