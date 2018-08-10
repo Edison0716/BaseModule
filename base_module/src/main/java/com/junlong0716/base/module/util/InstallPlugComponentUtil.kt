@@ -2,6 +2,7 @@ package com.junlong0716.base.module.util
 
 import android.content.Context
 import com.didi.virtualapk.PluginManager
+import com.orhanobut.logger.Logger
 import java.io.File
 
 /**
@@ -16,14 +17,15 @@ object InstallPlugComponentUtil {
         val componentFile = File(componentPath)
         //插件不存在
         if (!componentFile.exists()) {
+            Logger.e(componentFile.path)
             installPlugInComponentCallback.onComponentNonExist()
             return
         }
-
         //判断插件是否存在
         if (PluginManager.getInstance(context).getLoadedPlugin(componentPackageName) == null){
             //加载插件包
             PluginManager.getInstance(context).loadPlugin(componentFile)
+            installPlugInComponentCallback.onComponentHasLoaded()
         }else{
             installPlugInComponentCallback.onComponentHasAlreadyLoad()
         }
@@ -34,5 +36,7 @@ object InstallPlugComponentUtil {
         fun onComponentNonExist()
         //插件包已经加载过
         fun onComponentHasAlreadyLoad()
+        //插件加载完成
+        fun onComponentHasLoaded()
     }
 }
