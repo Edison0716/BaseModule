@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.1.9.8'
+implementation 'com.github.Jack1995:BaseModule:1.1.9.9'
 ```
 
 ----------记录过程----------</br>
@@ -19,6 +19,7 @@ implementation 'com.github.Jack1995:BaseModule:1.1.9.8'
 ---修复Retrofit无法显示打印日志问题</br>
 ---修复下载无法关闭导致内存泄露问题</br>
 ---带有身份信息的请求头</br>
+---自定义RequestCallback RequestJsonCallback</br>
 6、RxSchedulers 线程调度</br>
 7、RxBus(基于Blankj 的RxBus 修改)</br>
 8、颜色值</br>
