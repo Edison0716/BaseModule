@@ -45,7 +45,7 @@ class RetrofitClient private constructor() {
 
     private var mBaseUrl = ""
     private var mRetrofit: Retrofit? = null
-    private var mOkHttpClient: OkHttpClient? = null
+    private var mAuthRetrofit: Retrofit? = null
     private var mSavePath: String? = null
     private var mFileName: String? = null
     private var mLogOutCode: Int? = null
@@ -73,7 +73,7 @@ class RetrofitClient private constructor() {
         val logInterceptor = HttpLoggingInterceptor(HttpLoggerInterceptor())
         logInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        mOkHttpClient = OkHttpClient
+        val mOkHttpClient = OkHttpClient
                 .Builder()
                 .cache(Cache(File(mContext.externalCacheDir, "net_request_cache"), (10 * 1024 * 1024).toLong()))
                 .addInterceptor(CacheInterceptor())
@@ -90,7 +90,7 @@ class RetrofitClient private constructor() {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
-        val authOkHttpClient = OkHttpClient
+        val mAuthOkHttpClient = OkHttpClient
                 .Builder()
                 .cache(Cache(File(mContext.externalCacheDir, "net_request_cache"), (10 * 1024 * 1024).toLong()))
                 .addInterceptor(CacheInterceptor())
@@ -100,10 +100,22 @@ class RetrofitClient private constructor() {
                 .connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
+
+        mAuthRetrofit = Retrofit.Builder()
+                .client(mAuthOkHttpClient!!)
+                .baseUrl(mBaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+
     }
 
     fun getClient(): Retrofit {
         return mRetrofit!!
+    }
+
+    fun getAuthClient(): Retrofit {
+        return mAuthRetrofit!!
     }
 
     //认证以后的请求客户端 添加每次都要附带的 pin
