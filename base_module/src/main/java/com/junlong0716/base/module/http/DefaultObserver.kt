@@ -53,6 +53,7 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
 
     override fun onError(e: Throwable) {
         LogUtils.e("Retrofit", e.message)
+        onError()
         if (e is HttpException) {     //   HTTP错误
             onException(ExceptionReason.BAD_NETWORK)
         } else if (e is ConnectException || e is UnknownHostException) {   //   连接错误
@@ -66,7 +67,6 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
         } else {
             onException(ExceptionReason.UNKNOWN_ERROR)
         }
-        onError()
     }
 
 
