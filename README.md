@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.1.9.9'
+implementation 'com.github.Jack1995:BaseModule:1.2.1.0'
 ```
 
 ----------记录过程----------</br>
@@ -29,3 +29,6 @@ implementation 'com.github.Jack1995:BaseModule:1.1.9.9'
 12、账号相关 （移除在BaseApplication中保存个人信息 不知道什么原因 在其他插件中获取不到个人信息）</br>
 13、安装插件工具类（InstallPlugComponentUtil.kt）</br>
 14、SmartRefreshLayout</br>
+15、Lottie</br>
+16、CircleImageView</br>
+17、BaseRecyclerViewAdapter</br>
