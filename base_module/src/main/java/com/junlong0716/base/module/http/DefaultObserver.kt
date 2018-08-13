@@ -1,5 +1,6 @@
 package com.junlong0716.base.module.http
 
+import android.content.Context
 import android.widget.Toast
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -21,7 +22,9 @@ import java.text.ParseException
  * @date: Created in 下午12:55 2017/12/29
  * @modified by:
  */
-abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
+abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observer<T> {
+    private var mContext = context
+
     override fun onSubscribe(d: Disposable) {}
 
     override fun onNext(t: T) {
@@ -41,7 +44,11 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
      */
     abstract fun onFail(response: T)
 
-    abstract fun onError()
+    /**
+     *请求数据失败，指在请求网络API接口请求方式时，出现无法联网、缺少权限，内存泄露等原因导致无法连接到请求数据源。
+     * @param response 服务器返回的数据
+     */
+    abstract fun onError(msg: String)
 
     /**
      * 请求成功
@@ -53,7 +60,6 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
 
     override fun onError(e: Throwable) {
         LogUtils.e("Retrofit", e.message)
-        onError()
         if (e is HttpException) {     //   HTTP错误
             onException(ExceptionReason.BAD_NETWORK)
         } else if (e is ConnectException || e is UnknownHostException) {   //   连接错误
@@ -82,17 +88,36 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
      */
     private fun onException(reason: ExceptionReason) {
         when (reason) {
-            DefaultObserver.ExceptionReason.CONNECT_ERROR -> ToastUtils.showShort(R.string.common_connect_error, Toast.LENGTH_SHORT)
+            DefaultObserver.ExceptionReason.CONNECT_ERROR -> {
+                ToastUtils.showShort(R.string.common_connect_error, Toast.LENGTH_SHORT)
+                onError(mContext.getString(R.string.common_connect_error))
+            }
 
-            DefaultObserver.ExceptionReason.CONNECT_TIMEOUT -> ToastUtils.showShort(R.string.common_connect_timeout, Toast.LENGTH_SHORT)
 
-            DefaultObserver.ExceptionReason.BAD_NETWORK -> ToastUtils.showShort(R.string.common_bad_network, Toast.LENGTH_SHORT)
+            DefaultObserver.ExceptionReason.CONNECT_TIMEOUT -> {
+                ToastUtils.showShort(R.string.common_connect_timeout, Toast.LENGTH_SHORT)
+                onError(mContext.getString(R.string.common_connect_timeout))
+            }
 
-            DefaultObserver.ExceptionReason.PARSE_ERROR -> ToastUtils.showShort(R.string.common_parse_error, Toast.LENGTH_SHORT)
+            DefaultObserver.ExceptionReason.BAD_NETWORK -> {
+                ToastUtils.showShort(R.string.common_bad_network, Toast.LENGTH_SHORT)
+                onError(mContext.getString(R.string.common_bad_network))
+            }
 
-            DefaultObserver.ExceptionReason.UNKNOWN_ERROR -> ToastUtils.showShort(R.string.common_unknown_error, Toast.LENGTH_SHORT)
+            DefaultObserver.ExceptionReason.PARSE_ERROR -> {
+                ToastUtils.showShort(R.string.common_parse_error, Toast.LENGTH_SHORT)
+                onError(mContext.getString(R.string.common_parse_error))
+            }
 
-            else -> ToastUtils.showShort(R.string.common_unknown_error)
+            DefaultObserver.ExceptionReason.UNKNOWN_ERROR -> {
+                ToastUtils.showShort(R.string.common_unknown_error, Toast.LENGTH_SHORT)
+                onError(mContext.getString(R.string.common_unknown_error))
+            }
+
+            else -> {
+                ToastUtils.showShort(R.string.common_unknown_error)
+                onError(mContext.getString(R.string.common_unknown_error))
+            }
         }
     }
 
