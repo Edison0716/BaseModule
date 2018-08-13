@@ -37,10 +37,11 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
 
     /**
      *网络请求失败
-     *
      * @param response 服务器返回的数据
      */
     abstract fun onFail(response: T)
+
+    abstract fun onError()
 
     /**
      * 请求成功
@@ -65,6 +66,7 @@ abstract class DefaultObserver<T : BasicResponse<*>> : Observer<T> {
         } else {
             onException(ExceptionReason.UNKNOWN_ERROR)
         }
+        onError()
     }
 
 
