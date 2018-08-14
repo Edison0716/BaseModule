@@ -32,3 +32,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.1.5'
 15、Lottie</br>
 16、CircleImageView</br>
 17、BaseRecyclerViewAdapter</br>
+18、CardView</br>
