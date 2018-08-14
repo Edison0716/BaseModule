@@ -53,6 +53,7 @@ dependencies {
     api 'de.hdodenhof:circleimageview:2.2.0'
     api 'com.airbnb.android:lottie:2.5.5'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
+    api 'com.youth.banner:banner:1.4.10'
 }
 
 repositories {
