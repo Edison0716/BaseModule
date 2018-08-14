@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.1.5'
+implementation 'com.github.Jack1995:BaseModule:1.2.1.7'
 ```
 
 ----------记录过程----------</br>
@@ -33,3 +33,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.1.5'
 16、CircleImageView</br>
 17、BaseRecyclerViewAdapter</br>
 18、CardView</br>
+19、圆角Banner、DeleteEditText</br>
