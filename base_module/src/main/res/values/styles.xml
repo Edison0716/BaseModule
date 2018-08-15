@@ -20,4 +20,27 @@
         <item name="android:activityCloseEnterAnimation">@anim/common_slide_in_right</item>
         <item name="android:activityCloseExitAnimation">@anim/common_slide_out_right</item>
     </style>
+
+
+    <style name="common_dialog_theme">
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:windowAnimationStyle">@style/common_dialog_anim</item>-->
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/common_dialog_anim</item>
+    </style>
+
+
+    <style name="common_dialog_anim" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/common_alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/common_alpha_out</item>
+    </style>
 </resources>

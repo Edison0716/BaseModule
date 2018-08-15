@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.junlong0716.base.module.base.BaseActivity
+import com.junlong0716.base.module.dialog.CommonLoadingDialog
 import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
 import com.junlong0716.base.module.rx.RxSchedulers
@@ -89,6 +90,10 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
             //发送 带有 Tag 标签的消息
             RxBus.default.postSticky("RxBus 发送了一条带标签粘性消息", "SEND_MESSAGE_BY_TAG")
             startActivity(Intent(this, StickyMessageActivity::class.java))
+        }
+
+        bt_show_loading.setOnClickListener {
+            CommonLoadingDialog(this).show()
         }
     }
 

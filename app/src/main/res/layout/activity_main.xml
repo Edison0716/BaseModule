@@ -51,6 +51,14 @@
             android:text="跳转到StickyMessageActivity"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/bt_show_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="显示加载弹窗"
+            android:textAllCaps="false" />
+
 
     </LinearLayout>
 
