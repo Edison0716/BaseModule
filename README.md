@@ -35,3 +35,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.1.8'
 18、CardView</br>
 19、圆角Banner、DeleteEditText</br>
 20、BannerImageLoaderManager</br>
+21、加载动画 .json 文件</br>
