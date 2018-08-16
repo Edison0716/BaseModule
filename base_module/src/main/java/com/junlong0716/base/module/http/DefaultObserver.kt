@@ -17,6 +17,9 @@ import java.io.InterruptedIOException
 import java.net.ConnectException
 import java.net.UnknownHostException
 import java.text.ParseException
+import android.content.Intent
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
 
 /**
  * @author: 巴黎没有摩天轮Li
@@ -36,6 +39,8 @@ abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observe
             if (t.code == RetrofitClient.instance.getLogOutCode()) {
                 ToastUtils.showShort("登录过期！请重新登录！")
                 RxBus.default.post("", ACCOUNT_LOG_OUT)
+                val intent = Intent(ACCOUNT_LOG_OUT)
+                mContext.sendBroadcast(intent)
             }
             onFail(t)
         }

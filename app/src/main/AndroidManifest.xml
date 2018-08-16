@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".StickyMessageActivity" />
-        <activity android:name=".LogInActivity"></activity>
+
+        <activity android:name=".LogInActivity"/>
     </application>
 
 </manifest>

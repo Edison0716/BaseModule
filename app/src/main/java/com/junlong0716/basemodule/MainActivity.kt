@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
     override fun initView(savedInstanceState: Bundle?) {
         val rxPermissions = RxPermissions(this)
 
-        RxBus.default.subscribe(this, object : RxBus.Callback<String> {
+        RxBus.default.subscribe(this, "123",object : RxBus.Callback<String> {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
             }
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
                     })
         }
         bt_send_message.setOnClickListener {
-            RxBus.default.post("RxBus 发送了一条消息")
+            RxBus.default.post("","123")
         }
 
         bt_send_sticky_message.setOnClickListener {
