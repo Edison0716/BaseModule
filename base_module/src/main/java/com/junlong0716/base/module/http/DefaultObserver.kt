@@ -10,6 +10,7 @@ import com.junlong0716.base.module.R
 import com.junlong0716.base.module.constant.Constant.ACCOUNT_LOG_OUT
 import com.junlong0716.base.module.http.base.BasicResponse
 import com.junlong0716.base.module.rx.bus.RxBus
+import com.junlong0716.base.module.service.PostRxBusService
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -37,9 +38,9 @@ abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observe
         } else {
             if (t.code == RetrofitClient.instance.getLogOutCode()) {
                 ToastUtils.showShort("登录过期！请重新登录！")
-                RxBus.default.post("", ACCOUNT_LOG_OUT)
-                val intent = Intent(ACCOUNT_LOG_OUT)
-                mContext.sendBroadcast(intent)
+                val mIntent = Intent()
+                mIntent.setClass(mContext, PostRxBusService::class.java)
+                mContext.startService(mIntent)
             }
             onFail(t)
         }
