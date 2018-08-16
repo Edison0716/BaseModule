@@ -38,3 +38,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.2.6'
 20、BannerImageLoaderManager</br>
 21、加载弹窗 加载动画 .json 文件</br>
 22、共享SharedPreference Manager</br>
+23、空布局</br>
