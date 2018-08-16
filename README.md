@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.1.8'
+implementation 'com.github.Jack1995:BaseModule:1.2.2.0'
 ```
 
 ----------记录过程----------</br>
@@ -35,4 +35,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.1.8'
 18、CardView</br>
 19、圆角Banner、DeleteEditText</br>
 20、BannerImageLoaderManager</br>
-21、加载动画 .json 文件</br>
+21、加载弹窗 加载动画 .json 文件</br>
