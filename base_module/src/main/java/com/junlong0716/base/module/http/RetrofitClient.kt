@@ -2,10 +2,12 @@ package com.junlong0716.base.module.http
 
 import android.content.Context
 import com.blankj.utilcode.util.NetworkUtils
+import com.junlong0716.base.module.BuildConfig
 import com.junlong0716.base.module.Constant
 import com.junlong0716.base.module.http.download.DownloadService
 import com.junlong0716.base.module.http.download.DownloadTransformer
 import com.junlong0716.base.module.http.interceptor.CacheInterceptor
+import com.junlong0716.base.module.manager.SPTokenManager
 import com.junlong0716.base.module.manager.UserManager
 import com.junlong0716.base.module.util.FileUtils
 import com.junlong0716.base.module.util.FormatJsonUtil
@@ -49,7 +51,7 @@ class RetrofitClient private constructor() {
     private var mSavePath: String? = null
     private var mFileName: String? = null
     private var mLogOutCode: Int? = null
-
+    private var mContext: Context? = null
     //设置请求头
     fun setBaseUrl(baseUrl: String): RetrofitClient {
         this.mBaseUrl = baseUrl
@@ -68,6 +70,7 @@ class RetrofitClient private constructor() {
 
     //初始化
     fun initClient(mContext: Context) {
+        this.mContext = mContext
         if (mBaseUrl == "") throw IllegalArgumentException("请在Application中初始化请求头！")
         if (mLogOutCode == null) throw IllegalArgumentException("请在Application中初始化登录过期code！")
         val logInterceptor = HttpLoggingInterceptor(HttpLoggerInterceptor())
@@ -123,9 +126,18 @@ class RetrofitClient private constructor() {
         override fun intercept(chain: Interceptor.Chain?): Response {
             val original = chain!!.request()
             val originalHttpUrl = original.url()
-            val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("pin", UserManager.getUserAccount()!!.pin)
-                    .build()
+            val url: HttpUrl
+
+            url = if (BuildConfig.isComponentDev) {
+                originalHttpUrl.newBuilder()
+                        .addQueryParameter("pin", SPTokenManager.getUserAccount(mContext!!)!!.pin)
+                        .build()
+            } else {
+                originalHttpUrl.newBuilder()
+                        .addQueryParameter("pin", UserManager.getUserAccount()!!.pin)
+                        .build()
+            }
+
             val requestBuilder = original.newBuilder()
                     .method(original.method(), original.body()).url(url)
             var request = requestBuilder.build()

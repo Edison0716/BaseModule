@@ -1,5 +1,9 @@
 package com.junlong0716.base.module.manager;
 
+import android.content.Context;
+
+import com.junlong0716.base.module.BuildConfig;
+
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,9 +17,16 @@ import java.util.Map;
  */
 public class SignManager {
     //获取加签后的sign
-    public static String getSign(Map<String, String> orderMap, long time) {
-        String token = UserManager.INSTANCE.getUserAccount().getImToken();
-        String pin = UserManager.INSTANCE.getUserAccount().getPin();
+    public static String getSign(Map<String, String> orderMap, long time, Context context) {
+        String token;
+        String pin;
+        if (BuildConfig.isComponentDev) {
+            token = SPTokenManager.INSTANCE.getUserAccount(context).getImToken();
+            pin = SPTokenManager.INSTANCE.getUserAccount(context).getPin();
+        } else {
+            token = UserManager.INSTANCE.getUserAccount().getImToken();
+            pin = UserManager.INSTANCE.getUserAccount().getPin();
+        }
         StringBuilder builder = new StringBuilder();
         orderMap.put("pin", pin);
         orderMap.put("timeStamp", String.valueOf(time));
@@ -27,7 +38,6 @@ public class SignManager {
         ////////////Logger.e(builder.toString(),"sign-value");
         return getSHA(builder.toString());
     }
-
 
     private static String getSHA(String description) {
         try {
