@@ -52,6 +52,8 @@ class RetrofitClient private constructor() {
     private var mFileName: String? = null
     private var mLogOutCode: Int? = null
     private var mContext: Context? = null
+    private var mIsComponent = false
+
     //设置请求头
     fun setBaseUrl(baseUrl: String): RetrofitClient {
         this.mBaseUrl = baseUrl
@@ -62,6 +64,11 @@ class RetrofitClient private constructor() {
     fun setLogOutCode(code: Int): RetrofitClient {
         this.mLogOutCode = code
         return this
+    }
+
+    //设置开发模式 可选
+    fun setComponentState(isComponent: Boolean) {
+        mIsComponent = isComponent
     }
 
     fun getLogOutCode(): Int? {
@@ -128,7 +135,7 @@ class RetrofitClient private constructor() {
             val originalHttpUrl = original.url()
             val url: HttpUrl
 
-            url = if (BuildConfig.isComponentDev) {
+            url = if (mIsComponent) {
                 originalHttpUrl.newBuilder()
                         .addQueryParameter("pin", SPTokenManager.getUserAccount(mContext!!)!!.pin)
                         .build()

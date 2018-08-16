@@ -17,12 +17,12 @@ import java.util.Map;
  */
 public class SignManager {
     //获取加签后的sign
-    public static String getSign(Map<String, String> orderMap, long time, Context context) {
+    public static String getSign(Map<String, String> orderMap, long time, Boolean isComponent,Context mContent) {
         String token;
         String pin;
-        if (BuildConfig.isComponentDev) {
-            token = SPTokenManager.INSTANCE.getUserAccount(context).getImToken();
-            pin = SPTokenManager.INSTANCE.getUserAccount(context).getPin();
+        if (isComponent) {
+            token = SPTokenManager.INSTANCE.getUserAccount(mContent).getImToken();
+            pin = SPTokenManager.INSTANCE.getUserAccount(mContent).getPin();
         } else {
             token = UserManager.INSTANCE.getUserAccount().getImToken();
             pin = UserManager.INSTANCE.getUserAccount().getPin();
