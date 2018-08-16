@@ -67,8 +67,9 @@ class RetrofitClient private constructor() {
     }
 
     //设置开发模式 可选
-    fun setComponentState(isComponent: Boolean) {
+    fun setComponentState(isComponent: Boolean): RetrofitClient {
         mIsComponent = isComponent
+        return this
     }
 
     fun getLogOutCode(): Int? {
