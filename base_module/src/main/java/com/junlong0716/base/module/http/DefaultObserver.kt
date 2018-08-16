@@ -6,7 +6,9 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.JsonParseException
 import com.junlong0716.base.module.R
+import com.junlong0716.base.module.constant.Constant.ACCOUNT_LOG_OUT
 import com.junlong0716.base.module.http.base.BasicResponse
+import com.junlong0716.base.module.rx.bus.RxBus
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -33,6 +35,7 @@ abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observe
         } else {
             if (t.code == RetrofitClient.instance.getLogOutCode()) {
                 ToastUtils.showShort("登录过期！请重新登录！")
+                RxBus.default.post("", ACCOUNT_LOG_OUT)
             }
             onFail(t)
         }
