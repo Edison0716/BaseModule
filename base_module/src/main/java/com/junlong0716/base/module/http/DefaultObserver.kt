@@ -34,7 +34,7 @@ abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observe
         if (t.code == 0) {
             onSuccess(t)
         } else {
-            if (t.code == RetrofitClient.instance.getLogOutCode()) {
+            if (t.desc == "invalid_sign") {
                 ToastUtils.showShort("登录过期！请重新登录！")
                 ActivityManager.finishAllActivity()
                 // 正确的用法
