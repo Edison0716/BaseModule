@@ -7,10 +7,9 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.JsonParseException
 import com.junlong0716.base.module.R
-import com.junlong0716.base.module.constant.Constant.ACCOUNT_LOG_OUT
 import com.junlong0716.base.module.http.base.BasicResponse
 import com.junlong0716.base.module.manager.ActivityManager
-import com.junlong0716.base.module.rx.bus.RxBus
+import com.junlong0716.base.module.manager.UserManager
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -36,14 +35,14 @@ abstract class DefaultObserver<T : BasicResponse<*>>(context: Context) : Observe
         if (t.code == 0) {
             onSuccess(t)
         } else {
-            if (t.desc == "invalid_sign") {
+            if (t.code == RetrofitClient.instance.getLogOutCode()) {
                 ToastUtils.showShort("登录过期！请重新登录！")
-                //ActivityManager.finishAllActivity()
+                UserManager.setLoginState(false)
+                ActivityManager.finishAllActivity()
                 // 正确的用法
-//                val intent = Intent()
-//                intent.setClassName("com.fbi.rainbowpavilion.module.account", "com.fbi.rainbowpavilion.module.account.LogInActivity")
-//                mContext.startActivity(intent)
-                RxBus.default.post("", ACCOUNT_LOG_OUT)
+                val intent = Intent()
+                intent.setClassName("com.fbi.rainbowpavilion.module.account", "com.fbi.rainbowpavilion.module.account.LogInActivity")
+                mContext.startActivity(intent)
             }
             onFail(t)
         }
