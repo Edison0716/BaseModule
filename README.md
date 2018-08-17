@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.2.6'
+implementation 'com.github.Jack1995:BaseModule:1.2.3.6'
 ```
 
 ----------记录过程----------</br>
@@ -21,6 +21,7 @@ implementation 'com.github.Jack1995:BaseModule:1.2.2.6'
 ---带有身份信息的请求头</br>
 ---自定义RequestCallback RequestJsonCallback</br>
 ---插件开发模式 网络请求切换</br>
+---账号过期 RxBus 推送</br>
 6、RxSchedulers 线程调度</br>
 7、RxBus(基于Blankj 的RxBus 修改)</br>
 8、颜色值</br>
