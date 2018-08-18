@@ -89,4 +89,17 @@ abstract class BaseFragment<P : IPresenter> : RxFragment() {
         intent.putExtras(bundle)
         startActivity(intent)
     }
+
+    protected fun go(tarActivityPackage: String, tarActivityPackageName: String) {
+        val intent = Intent()
+        intent.setClassName(tarActivityPackage, tarActivityPackageName)
+        startActivity(intent)
+    }
+
+    protected fun go(tarActivityPackage: String, tarActivityPackageName: String, bundle: Bundle) {
+        val intent = Intent()
+        intent.setClassName(tarActivityPackage, tarActivityPackageName)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
 }
