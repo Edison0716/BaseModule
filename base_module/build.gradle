@@ -59,6 +59,9 @@ dependencies {
     api 'com.airbnb.android:lottie:2.5.5'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
     api 'com.youth.banner:banner:1.4.10'
+    api 'com.daimajia.easing:library:2.0@aar'
+    api 'com.daimajia.androidanimations:library:2.3@aar'
+    api 'me.codeboy.android:align-text-view:2.3.2'
 }
 
 repositories {
