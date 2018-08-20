@@ -13,7 +13,7 @@ import com.junlong0716.base.module.R
  *@date: Created in 2018/8/15 上午11:02
  *@modified by:
  */
-class CommonLoadingDialog(activity: AppCompatActivity) : Dialog(activity, R.style.common_dialog_zoom_theme) {
+class CommonLoadingDialog(activity: AppCompatActivity) : Dialog(activity, R.style.common_dialog_alpha_theme) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.common_dialog_loading)
