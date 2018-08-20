@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.3.7'
+implementation 'com.github.Jack1995:BaseModule:1.2.3.9'
 ```
 
 ----------记录过程----------</br>
@@ -41,3 +41,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.3.7'
 22、共享SharedPreference Manager</br>
 23、空布局</br>
 24、公共资源 暂时先写到BaseModule 到时候 在但单独写个 BaseResource 专门存放公共资源</br>
+25、弹窗动画</br>
