@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class SignManager {
     //获取加签后的sign
-    public static String getSign(Map<String, String> orderMap, long time, Boolean isComponent,Context mContent) {
+    public static String getSign(Map<String, String> orderMap, long time, Boolean isComponent, Context mContent) {
         String token;
         String pin;
         if (isComponent) {
@@ -27,6 +27,7 @@ public class SignManager {
             token = UserManager.INSTANCE.getUserAccount().getImToken();
             pin = UserManager.INSTANCE.getUserAccount().getPin();
         }
+
         StringBuilder builder = new StringBuilder();
         orderMap.put("pin", pin);
         orderMap.put("timeStamp", String.valueOf(time));
