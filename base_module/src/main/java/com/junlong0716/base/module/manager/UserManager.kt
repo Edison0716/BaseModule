@@ -14,8 +14,6 @@ import com.junlong0716.base.module.util.JSONUtil
  *@modified by:
  */
 object UserManager {
-
-
     //保存用户登录信息
     fun putUserAccount(userAccount: UserAccountEntity) {
         val userAccountJson = JSONUtil.toJSON(userAccount)

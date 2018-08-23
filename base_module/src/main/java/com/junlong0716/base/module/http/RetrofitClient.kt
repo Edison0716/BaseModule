@@ -2,13 +2,11 @@ package com.junlong0716.base.module.http
 
 import android.content.Context
 import com.blankj.utilcode.util.NetworkUtils
-import com.junlong0716.base.module.BuildConfig
 import com.junlong0716.base.module.Constant
 import com.junlong0716.base.module.http.download.DownloadService
 import com.junlong0716.base.module.http.download.DownloadTransformer
 import com.junlong0716.base.module.http.interceptor.CacheInterceptor
 import com.junlong0716.base.module.manager.SPTokenManager
-import com.junlong0716.base.module.manager.UserManager
 import com.junlong0716.base.module.util.FileUtils
 import com.junlong0716.base.module.util.FormatJsonUtil
 import com.junlong0716.base.module.util.LoggerUtil
