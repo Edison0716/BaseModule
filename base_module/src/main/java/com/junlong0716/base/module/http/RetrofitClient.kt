@@ -32,6 +32,7 @@ class RetrofitClient private constructor() {
         //单例
         @Volatile
         private var INSTANCE: RetrofitClient? = null
+
         val instance: RetrofitClient
             get() {
                 if (INSTANCE == null) {
@@ -52,7 +53,7 @@ class RetrofitClient private constructor() {
     private var mFileName: String? = null
     private var mLogOutCode: Int? = null
     private var mContext: Context? = null
-    private var mIsComponent = false
+
 
     //设置请求头
     fun setBaseUrl(baseUrl: String): RetrofitClient {
@@ -63,12 +64,6 @@ class RetrofitClient private constructor() {
     //账号失效 code
     fun setLogOutCode(code: Int): RetrofitClient {
         this.mLogOutCode = code
-        return this
-    }
-
-    //设置开发模式 可选
-    fun setComponentState(isComponent: Boolean): RetrofitClient {
-        mIsComponent = isComponent
         return this
     }
 
@@ -136,15 +131,11 @@ class RetrofitClient private constructor() {
             val originalHttpUrl = original.url()
             val url: HttpUrl
 
-            url = if (mIsComponent) {
-                originalHttpUrl.newBuilder()
-                        .addQueryParameter("pin", SPTokenManager.getUserAccount(mContext!!)!!.pin)
-                        .build()
-            } else {
-                originalHttpUrl.newBuilder()
-                        .addQueryParameter("pin", UserManager.getUserAccount()!!.pin)
-                        .build()
-            }
+
+            url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("pin", SPTokenManager.getUserAccount(mContext!!)!!.pin)
+                    .build()
+
 
             val requestBuilder = original.newBuilder()
                     .method(original.method(), original.body()).url(url)

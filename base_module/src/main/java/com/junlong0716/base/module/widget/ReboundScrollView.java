@@ -178,7 +178,6 @@ public class ReboundScrollView extends ScrollView {
         contentView.layout(originalRect.left, originalRect.top,
                 originalRect.right, originalRect.bottom);
 
-
         //将标志位设回false
         canPullDown = false;
         canPullUp = false;
@@ -199,6 +198,4 @@ public class ReboundScrollView extends ScrollView {
     private boolean isCanPullUp() {
         return contentView.getHeight() <= getHeight() + getScrollY();
     }
-
-
 }

@@ -30,7 +30,6 @@ object UserManager {
         } else null
     }
 
-
     //保存用户信息
     fun putUserInfo(userInfo: UserInfoEntity) {
         val userInfoJson = JSONUtil.toJSON(userInfo)
