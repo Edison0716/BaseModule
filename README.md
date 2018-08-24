@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.3.9'
+implementation 'com.github.Jack1995:BaseModule:1.2.4.3'
 ```
 
 ----------记录过程----------</br>
