@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
     }
 
     buildTypes {
@@ -27,6 +29,19 @@ android {
 
     kapt {
         generateStubs = true
+    }
+
+    packagingOptions {
+        exclude "lib/armeabi-v7a/libRSSupport.so"
+        exclude "lib/mips/librsjni.so"
+        exclude "lib/mips/libRSSupport.so"
+        exclude "lib/arm64-v8a/librsjni.so"
+        exclude "lib/x86/librsjni.so"
+        exclude "lib/arm64-v8a/libRSSupport.so"
+        exclude "lib/armeabi-v7a/librsjni.so"
+        exclude "lib/x86/libRSSupport.so"
+        exclude "lib/x86_64/libRSSupport.so"
+        exclude "lib/x86_64/librsjni.so"
     }
 }
 
@@ -51,7 +66,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
     api 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
-    api 'jp.wasabeef:glide-transformations:3.1.0'
+    api 'jp.wasabeef:glide-transformations:3.3.0'
     api 'com.didi.virtualapk:core:0.9.6'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
@@ -63,6 +78,7 @@ dependencies {
     api 'com.daimajia.androidanimations:library:2.3@aar'
     api 'me.codeboy.android:align-text-view:2.3.2'
     api 'com.github.Jack1995:unity-ads-android:2.3.1'
+    api 'com.github.mmin18:realtimeblurview:1.1.2'
 }
 
 repositories {
