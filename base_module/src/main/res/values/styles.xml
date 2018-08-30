@@ -22,12 +22,14 @@
     </style>
 
 
-    <style name="common_dialog_alpha_theme">
+    <style name="common_dialog_alpha_theme" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/common_dialog_alpha_anim</item>
+        <item name="android:backgroundDimEnabled">true</item><!-- 外部变灰 -->
+        <item name="android:windowContentOverlay">@null</item><!-- 内部阴影 -->
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <!--淡入淡出-->
