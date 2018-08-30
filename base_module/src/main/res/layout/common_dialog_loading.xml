@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/common_transparent100_white">
-
-    <com.github.mmin18.widget.RealtimeBlurView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:realtimeBlurRadius="15dp"
-        app:realtimeOverlayColor="@color/common_transparent10_white" />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading_view"
         android:layout_width="wrap_content"
