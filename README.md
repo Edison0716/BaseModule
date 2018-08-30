@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.4.7'
+implementation 'com.github.Jack1995:BaseModule:1.2.4.8'
 ```
 
 ----------记录过程----------</br>
@@ -47,3 +47,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.4.7'
 27、BitmapConvertUtil</br>
 28、分享图片 .svg文件</br>
 29、集成Unity ads</br>
+30、弹窗毛玻璃背景</br>
