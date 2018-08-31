@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import com.blankj.utilcode.util.ScreenUtils
 import com.junlong0716.base.module.manager.ActivityManager
 import com.junlong0716.base.module.rx.bus.RxBus
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -34,8 +35,19 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
         //注册RxBus
         registerRxBus()
 
+        //统一适配屏幕
+        adaptScreen()
+
         //初始化控件
         initView(savedInstanceState)
+    }
+
+    private fun adaptScreen() {
+        if (ScreenUtils.isPortrait()) {
+            ScreenUtils.adaptScreen4VerticalSlide(this, 408)
+        } else {
+            ScreenUtils.adaptScreen4HorizontalSlide(this, 408)
+        }
     }
 
     abstract fun beforeSetLayout()
@@ -54,8 +66,11 @@ abstract class BaseActivity<P : IPresenter> : RxAppCompatActivity() {
         //解除Presenter 与 Activity 绑定
         this.mPresenter!!.onDestroy()
         this.mPresenter = null
+
         //解除注册RxBus
         RxBus.default.unregister(this)
+
+        ScreenUtils.cancelAdaptScreen(this)
     }
 
 
