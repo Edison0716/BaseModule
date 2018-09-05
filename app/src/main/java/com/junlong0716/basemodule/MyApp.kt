@@ -14,6 +14,6 @@ class MyApp : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         LoggerUtil.init(BuildConfig.DEBUG)
-        RetrofitClient.instance.setBaseUrl("http://dev.233player.com/").setLogOutCode(-4000).initClient(this)
+        RetrofitClient.instance.setBaseUrl("https://www.chg.red/").setLogOutCode(-4000).initClient(this)
     }
 }

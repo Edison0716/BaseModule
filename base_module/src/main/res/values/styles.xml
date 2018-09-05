@@ -73,6 +73,8 @@
         <item name="android:backgroundDimEnabled">true</item><!-- 外部变灰 -->
         <item name="android:windowContentOverlay">@null</item><!-- 内部阴影 -->
         <item name="android:windowAnimationStyle">@style/common_dialog_zoom_anim</item>
+        <!--设置状态栏颜色-->
+        <item name="colorPrimaryDark">@android:color/transparent</item>
     </style>
 
     <!--缩放动画-->
