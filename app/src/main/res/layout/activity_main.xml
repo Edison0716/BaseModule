@@ -61,7 +61,13 @@
             android:text="显示加载弹窗"
             android:textAllCaps="false" />
 
-
+        <Button
+            android:id="@+id/bt_get_package_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="获取apk文件信息"
+            android:textAllCaps="false" />
 
 
     </LinearLayout>

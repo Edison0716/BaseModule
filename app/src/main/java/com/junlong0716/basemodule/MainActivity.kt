@@ -13,6 +13,7 @@ import com.junlong0716.base.module.http.RetrofitClient
 import com.junlong0716.base.module.http.download.DownloadSubscriber
 import com.junlong0716.base.module.rx.RxSchedulers
 import com.junlong0716.base.module.rx.bus.RxBus
+import com.junlong0716.base.module.util.PlugVersionUtil
 import com.junlong0716.base.module.util.StatusBarUtil
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -36,7 +37,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
     override fun initView(savedInstanceState: Bundle?) {
         val rxPermissions = RxPermissions(this)
 
-        RxBus.default.subscribe(this, "123",object : RxBus.Callback<String> {
+        RxBus.default.subscribe(this, "123", object : RxBus.Callback<String> {
             override fun onEvent(t: String) {
                 ToastUtils.showShort(t)
             }
@@ -73,7 +74,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
                     })
         }
         bt_send_message.setOnClickListener {
-            RxBus.default.post("","123")
+            RxBus.default.post("", "123")
         }
 
         bt_send_sticky_message.setOnClickListener {
@@ -94,6 +95,11 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
         bt_show_loading.setOnClickListener {
             CommonLoadingDialog(this).show()
+        }
+
+        bt_get_package_info.setOnClickListener {
+            val plugVersionCode = PlugVersionUtil.getPlugVersionCode(this@MainActivity, "${Environment.getExternalStorageDirectory()}${File.separator}module-scan_debug.apk")
+            ToastUtils.showShort(plugVersionCode.toString())
         }
     }
 
