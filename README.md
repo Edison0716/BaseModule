@@ -3,7 +3,7 @@
 由于使用VirtualApk插件化开发方案 抽离出公共组件</br>
 
 ```
-implementation 'com.github.Jack1995:BaseModule:1.2.5.6'
+implementation 'com.github.Jack1995:BaseModule:1.2.5.7'
 ```
 
 ----------记录过程----------</br>
@@ -52,3 +52,4 @@ implementation 'com.github.Jack1995:BaseModule:1.2.5.6'
 32、适配屏幕 </br>
 33、集成rxBinding </br>
 34、崩溃工具类 </br>
+35、获取插件信息工具类 </br>
